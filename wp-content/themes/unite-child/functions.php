@@ -260,7 +260,7 @@ function theme_slug_filter_the_content($content) {
 
     global $post;
     $a = $content;
-    if (!is_single()) {
+//    if (!is_single()) {
         ob_start();
         echo $content;
         $taxonomies = [
@@ -294,11 +294,11 @@ function theme_slug_filter_the_content($content) {
         </ul>
         <?php
         $a = ob_get_clean();
-    }
+//    } 
     return $a;
 }
 
-add_filter('the_content', 'theme_slug_filter_the_content');
+add_filter('the_excerpt', 'theme_slug_filter_the_content');
 
 function latest_films($atts) {
     $args = array(
