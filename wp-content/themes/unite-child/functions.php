@@ -248,7 +248,14 @@ if (!function_exists('actors')) {
     add_action('init', 'actors', 0);
 }
 
-
+/**
+ * 
+ * @global type $post
+ * @param type $content
+ * @return type
+ * 
+ * Display taxonomy inside the list view below the content
+ */
 function theme_slug_filter_the_content($content) {
 
     global $post;
@@ -289,3 +296,27 @@ function theme_slug_filter_the_content($content) {
 }
 
 add_filter('the_content', 'theme_slug_filter_the_content');
+
+function latest_films($atts) {
+    $args = array(
+        'numberposts' => 5,
+        'offset' => 0,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'post_type' => 'films',
+        'post_status' => 'publish',
+        'suppress_filters' => true
+    );
+    $recent_posts = wp_get_recent_posts($args);
+    ob_start();
+    echo "<ul>";
+    foreach ($recent_posts as $recent) {
+        echo '<li><a href="' . get_permalink($recent["ID"]) . '">' . $recent["post_title"] . '</a> </li> ';
+    }
+    wp_reset_query();
+    echo "</ul>";
+    $a = ob_get_clean();
+    return $a;
+}
+
+add_shortcode('latest_films', 'latest_films');
