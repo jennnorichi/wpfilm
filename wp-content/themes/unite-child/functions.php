@@ -259,39 +259,42 @@ if (!function_exists('actors')) {
 function theme_slug_filter_the_content($content) {
 
     global $post;
-    ob_start();
-    echo $content;
-    $taxonomies = [
-        "genre" => "Genre",
-        "country" => "Country",
-        "year" => "Year",
-        "actors" => "Actor",
-    ];
-    ?>
-
-
-    <ul>
-        <?php
-        $args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'all');
-
-        foreach ($taxonomies as $taxonomy => $taxTitle) {
-            ?> 
-            <li><b><?php echo $taxTitle; ?>: </b>
-                <?php
-                $terms = wp_get_post_terms($post->ID, $taxonomy, $args);
-                $singleTerms = "";
-                foreach ($terms as $term_single) {
-                    $singleTerms .= $term_single->slug . ","; //do something here
-                }
-                echo " " . trim($singleTerms, ",");
-                ?>
-            </li>
-            <?php
-        }
+    $a = $content;
+    if (!is_single()) {
+        ob_start();
+        echo $content;
+        $taxonomies = [
+            "genre" => "Genre",
+            "country" => "Country",
+            "year" => "Year",
+            "actors" => "Actor",
+        ];
         ?>
-    </ul>
-    <?php
-    $a = ob_get_clean();
+
+
+        <ul>
+            <?php
+            $args = array('orderby' => 'name', 'order' => 'ASC', 'fields' => 'all');
+
+            foreach ($taxonomies as $taxonomy => $taxTitle) {
+                ?> 
+                <li><b><?php echo $taxTitle; ?>: </b>
+                    <?php
+                    $terms = wp_get_post_terms($post->ID, $taxonomy, $args);
+                    $singleTerms = "";
+                    foreach ($terms as $term_single) {
+                        $singleTerms .= $term_single->slug . ","; //do something here
+                    }
+                    echo " " . trim($singleTerms, ",");
+                    ?>
+                </li>
+                <?php
+            }
+            ?>
+        </ul>
+        <?php
+        $a = ob_get_clean();
+    }
     return $a;
 }
 
