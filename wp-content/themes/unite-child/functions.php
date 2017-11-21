@@ -64,7 +64,7 @@ function film() {
 		'description'           => __( 'Films', 'films' ),
 		'labels'                => $labels,
 		'supports'              => array( ),
-		'taxonomies'            => array( 'category', 'post_tag' ),
+		'taxonomies'            => array( 'category', 'post_tag', 'genre', 'country', 'year', 'actors'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -82,6 +82,182 @@ function film() {
 
 }
 add_action( 'init', 'film', 0 );
+
+}
+
+
+/**
+ * Add new Taxonomy : Genre, Country, Year and Actors
+ */
+
+if ( ! function_exists( 'genre' ) ) {
+
+function genre() {
+
+	$labels = array(
+		'name'                       => _x( 'Genre', 'Taxonomy General Name', 'genre' ),
+		'singular_name'              => _x( 'Genre', 'Taxonomy Singular Name', 'genre' ),
+		'menu_name'                  => __( 'Genre', 'genre' ),
+		'all_items'                  => __( 'All Genre', 'genre' ),
+		'parent_item'                => __( 'Parent Item', 'genre' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'genre' ),
+		'new_item_name'              => __( 'New Item Name', 'genre' ),
+		'add_new_item'               => __( 'Add New Item', 'genre' ),
+		'edit_item'                  => __( 'Edit Item', 'genre' ),
+		'update_item'                => __( 'Update Item', 'genre' ),
+		'view_item'                  => __( 'View Item', 'genre' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'genre' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'genre' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'genre' ),
+		'popular_items'              => __( 'Popular Items', 'genre' ),
+		'search_items'               => __( 'Search Items', 'genre' ),
+		'not_found'                  => __( 'Not Found', 'genre' ),
+		'no_terms'                   => __( 'No items', 'genre' ),
+		'items_list'                 => __( 'Items list', 'genre' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'genre' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'genre', array( 'films' ), $args );
+
+}
+add_action( 'init', 'genre', 0 );
+
+}
+
+
+if ( ! function_exists( 'country' ) ) {
+
+function country() {
+
+	$labels = array(
+		'name'                       => _x( 'Country', 'Taxonomy General Name', 'country' ),
+		'singular_name'              => _x( 'Country', 'Taxonomy Singular Name', 'country' ),
+		'menu_name'                  => __( 'Country', 'country' ),
+		'all_items'                  => __( 'All Country', 'country' ),
+		'parent_item'                => __( 'Parent Item', 'country' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'country' ),
+		'new_item_name'              => __( 'New Item Name', 'country' ),
+		'add_new_item'               => __( 'Add New Item', 'country' ),
+		'edit_item'                  => __( 'Edit Item', 'country' ),
+		'update_item'                => __( 'Update Item', 'country' ),
+		'view_item'                  => __( 'View Item', 'country' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'country' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'country' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'country' ),
+		'popular_items'              => __( 'Popular Items', 'country' ),
+		'search_items'               => __( 'Search Items', 'country' ),
+		'not_found'                  => __( 'Not Found', 'country' ),
+		'no_terms'                   => __( 'No items', 'country' ),
+		'items_list'                 => __( 'Items list', 'country' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'country' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'country', array( 'films' ), $args );
+
+}
+add_action( 'init', 'country', 0 );
+
+}
+
+
+if ( ! function_exists( 'year' ) ) {
+
+function year() {
+
+	$labels = array(
+		'name'                       => _x( 'Year', 'Taxonomy General Name', 'year' ),
+		'singular_name'              => _x( 'Year', 'Taxonomy Singular Name', 'year' ),
+		'menu_name'                  => __( 'Year', 'year' ),
+		'all_items'                  => __( 'All Years', 'year' ),
+		'parent_item'                => __( 'Parent Item', 'year' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'year' ),
+		'new_item_name'              => __( 'New Item Name', 'year' ),
+		'add_new_item'               => __( 'Add New Item', 'year' ),
+		'edit_item'                  => __( 'Edit Item', 'year' ),
+		'update_item'                => __( 'Update Item', 'year' ),
+		'view_item'                  => __( 'View Item', 'year' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'year' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'year' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'year' ),
+		'popular_items'              => __( 'Popular Items', 'year' ),
+		'search_items'               => __( 'Search Items', 'year' ),
+		'not_found'                  => __( 'Not Found', 'year' ),
+		'no_terms'                   => __( 'No items', 'year' ),
+		'items_list'                 => __( 'Items list', 'year' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'year' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'year', array( 'films' ), $args );
+
+}
+add_action( 'init', 'year', 0 );
+
+}
+
+
+if ( ! function_exists( 'actors' ) ) {
+
+function actors() {
+
+	$labels = array(
+		'name'                       => _x( 'Actors', 'Taxonomy General Name', 'actors' ),
+		'singular_name'              => _x( 'Actor', 'Taxonomy Singular Name', 'actors' ),
+		'menu_name'                  => __( 'Actor', 'actors' ),
+		'all_items'                  => __( 'All Actors', 'actors' ),
+		'parent_item'                => __( 'Parent Item', 'actors' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'actors' ),
+		'new_item_name'              => __( 'New Item Name', 'actors' ),
+		'add_new_item'               => __( 'Add New Item', 'actors' ),
+		'edit_item'                  => __( 'Edit Item', 'actors' ),
+		'update_item'                => __( 'Update Item', 'actors' ),
+		'view_item'                  => __( 'View Item', 'actors' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'actors' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'actors' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'actors' ),
+		'popular_items'              => __( 'Popular Items', 'actors' ),
+		'search_items'               => __( 'Search Items', 'actors' ),
+		'not_found'                  => __( 'Not Found', 'actors' ),
+		'no_terms'                   => __( 'No items', 'actors' ),
+		'items_list'                 => __( 'Items list', 'actors' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'actors' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'actors', array( 'films' ), $args );
+
+}
+add_action( 'init', 'actors', 0 );
 
 }
 ?>
